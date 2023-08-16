@@ -5,9 +5,11 @@ class Solution
 {
     static void Main(string[] args)
     {
-        int height = int.Parse(Console.ReadLine().Split(' ')[1]);
+        int height = int.Parse(Console.ReadLine().Split(' ')[1]); // width is not needed
         string[] tLabels = Console.ReadLine().Split("  ");
-        int[] path = Enumerable.Range(0, tLabels.Length + 1).ToArray();
+
+        // fill up an array with 0 to the number of top labels, incrementing the value with each step
+        int[] path = Enumerable.Range(0, tLabels.Length).ToArray();
         
         for (int i = 1; i < height - 1; i++)
         {
@@ -19,6 +21,7 @@ class Solution
                 {
                     for (int k = 0; k < path.Length; k++)
                     {
+                        // redirect to right or left
                         if (path[k] == j - 1) {
                             path[k]++;
                         }
