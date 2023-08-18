@@ -17,12 +17,12 @@ class Player
             }
         }
 
-        for(int i = 0; i < height; i++)
+        for (int i = 0; i < height; i++)
         {
-            for(int j = 0; j < width; j++)
+            for (int j = 0; j < width; j++)
             {
                 // only if NOT empty
-                if(grid[i, j] != '.')
+                if (grid[i, j] != '.')
                 {
                     int right = j + 1;
                     string rightNeighbour = "-1 -1";

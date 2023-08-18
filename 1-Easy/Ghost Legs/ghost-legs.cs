@@ -17,7 +17,7 @@ class Solution
 
             for(int j = 0; j < line.Length; j++)
             {
-                if(line[j] == "--")
+                if (line[j] == "--")
                 {
                     for (int k = 0; k < path.Length; k++)
                     {

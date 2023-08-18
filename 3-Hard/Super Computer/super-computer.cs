@@ -34,9 +34,9 @@ class Solution
         int calculationCount = 0;
 
         // checks if the end of the previous calculation is smaller than the start of the current calculation
-        foreach(Calculation calc in calculations)
+        foreach (Calculation calc in calculations)
         {
-            if(previousEnd < calc.start)
+            if (previousEnd < calc.start)
             {
                 calculationCount++;
                 previousEnd = calc.end;
