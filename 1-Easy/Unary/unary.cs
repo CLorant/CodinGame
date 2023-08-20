@@ -11,14 +11,15 @@ class Solution
         {
             for (int j = 6; j >= 0; j--)
             {
+                // Get the j-th bit of the current character.
                 int bit = (int)Convert.ToChar(message[i]) >> j & 1;
                 if (bit != prev)
                 {
-                    if (-1 != prev)
+                    if (prev != -1)
                     {
                         encoded += " ";
                     }
-                    encoded += 1 == bit ? "0 " : "00 ";
+                    encoded += bit == 1 ? "0 " : "00 ";
                     prev = bit;
                 }
                 encoded += "0";
