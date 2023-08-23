@@ -6,6 +6,7 @@ My [CodinGame Puzzle](https://www.codingame.com/training) solutions. [My profile
 - [ASCII Art](./1-Easy/ASCII%20Art/) [<img width="20" height="20" style="vertical-align: middle;" src="./url.png">](https://www.codingame.com/ide/puzzle/ascii-art)
 - [Ghost Legs](./1-Easy/Ghost%20Legs/) [<img width="20" height="20" style="vertical-align: middle;" src="./url.png">](https://www.codingame.com/ide/puzzle/ghost-legs)
 - [Horse-racing Duals](./1-Easy/Horse-racing%20Duals/) [<img width="20" height="20" style="vertical-align: middle;" src="./url.png">](https://www.codingame.com/ide/puzzle/horse-racing-duals)
+- [Logic gates](./1-Easy/Logic%20gates/) [<img width="20" height="20" style="vertical-align: middle;" src="./url.png">](https://www.codingame.com/ide/puzzle/logic-gates)
 - [Retro Typewriter Art](./1-Easy/Retro%20Typewriter%20Art/) [<img width="20" height="20" style="vertical-align: middle;" src="./url.png">](https://www.codingame.com/ide/puzzle/retro-typewriter-art)
 - [The Descent](./1-Easy/The%20Descent/) [<img width="20" height="20" style="vertical-align: middle;" src="./url.png">](https://www.codingame.com/ide/puzzle/the-descent)
 - [Unary](./1-Easy/Unary/) [<img width="20" height="20" style="vertical-align: middle;" src="./url.png">](https://www.codingame.com/ide/puzzle/unary)
