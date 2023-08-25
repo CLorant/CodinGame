@@ -3,8 +3,8 @@
 #include <string.h>
 #include <ctype.h>
 
-#define MAX_EXT_LENGTH 10
-#define MAX_MT_LENGTH 50
+#define MAX_EXT_LENGTH 100
+#define MAX_MT_LENGTH 500
 #define MAX_FILE_NAME_LENGTH 100
 #define HASH_SIZE 10000
 
@@ -16,49 +16,11 @@ struct extMt {
 
 struct extMt *hashTable[HASH_SIZE];
 
-// calculates the hash code of a string by summing the ASCII mt of it
-unsigned int hash(char *str) {
-    unsigned int hash = 0;
-    while (*str) {
-        hash = (hash * 31) + *str;
-        str++;
-    }
-    return hash % HASH_SIZE;
-}
+unsigned int hash(char *str);
 
-void insertextMt(char *ext, char *mt) {
-    struct extMt *newPair = (struct extMt *)malloc(sizeof(struct extMt));
-    strcpy(newPair->ext, ext);
-    strcpy(newPair->mt, mt);
-    newPair->next = NULL;
+void insertextMt(char *ext, char *mt);
 
-    unsigned int h = hash(ext);
-
-    // inserts it if it's not in the hash table, else it appends it to the end of the linked list
-    if (!hashTable[h]) {
-        hashTable[h] = newPair;
-    }
-    else {
-        struct extMt *current = hashTable[h];
-        while (current->next) {
-            current = current->next;
-        }
-        current->next = newPair;
-    }
-}
-
-// iterates through the hash table, returns the mt if the ext is found, otherwise it returns NULL
-char* findmtByext(char *ext) {
-    unsigned int h = hash(ext);
-    struct extMt *current = hashTable[h];
-    while (current) {
-        if (strcmp(current->ext, ext) == 0) {
-            return current->mt;
-        }
-        current = current->next;
-    }
-    return NULL;
-}
+char* findmtByext(char *ext);
 
 int main() {
     int n, q;
@@ -114,4 +76,48 @@ int main() {
     }
 
     return 0;
+}
+
+// calculates the hash code of a string by summing the ASCII mt of it
+unsigned int hash(char *str) {
+    unsigned int hash = 0;
+    while (*str) {
+        hash = (hash * 31) + *str;
+        str++;
+    }
+    return hash % HASH_SIZE;
+}
+
+void insertextMt(char *ext, char *mt) {
+    struct extMt *newPair = (struct extMt *)malloc(sizeof(struct extMt));
+    strcpy(newPair->ext, ext);
+    strcpy(newPair->mt, mt);
+    newPair->next = NULL;
+
+    unsigned int h = hash(ext);
+
+    // inserts it if it's not in the hash table, else it appends it to the end of the linked list
+    if (!hashTable[h]) {
+        hashTable[h] = newPair;
+    }
+    else {
+        struct extMt *current = hashTable[h];
+        while (current->next) {
+            current = current->next;
+        }
+        current->next = newPair;
+    }
+}
+
+// iterates through the hash table, returns the mt if the ext is found, otherwise it returns NULL
+char* findmtByext(char *ext) {
+    unsigned int h = hash(ext);
+    struct extMt *current = hashTable[h];
+    while (current) {
+        if (strcmp(current->ext, ext) == 0) {
+            return current->mt;
+        }
+        current = current->next;
+    }
+    return NULL;
 }
