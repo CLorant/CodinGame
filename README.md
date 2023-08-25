@@ -4,6 +4,7 @@ My [CodinGame Puzzle](https://www.codingame.com/training) solutions. [My profile
 
 ## Easy
 - [ASCII Art](./1-Easy/ASCII%20Art/) [<img width="20" height="20" style="vertical-align: middle;" src="./url.png">](https://www.codingame.com/ide/puzzle/ascii-art)
+- [Defibrillators](./1-Easy/Defibrillators/) [<img width="20" height="20" style="vertical-align: middle;" src="./url.png">](https://www.codingame.com/ide/puzzle/defibrillators)
 - [Ghost Legs](./1-Easy/Ghost%20Legs/) [<img width="20" height="20" style="vertical-align: middle;" src="./url.png">](https://www.codingame.com/ide/puzzle/ghost-legs)
 - [Horse-racing Duals](./1-Easy/Horse-racing%20Duals/) [<img width="20" height="20" style="vertical-align: middle;" src="./url.png">](https://www.codingame.com/ide/puzzle/horse-racing-duals)
 - [Logic gates](./1-Easy/Logic%20gates/) [<img width="20" height="20" style="vertical-align: middle;" src="./url.png">](https://www.codingame.com/ide/puzzle/logic-gates)
