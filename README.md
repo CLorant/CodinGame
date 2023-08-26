@@ -10,6 +10,7 @@ My [CodinGame Puzzle](https://www.codingame.com/training) solutions. [My profile
 - [Logic gates](./1-Easy/Logic%20gates/) [<img width="20" height="20" style="vertical-align: middle;" src="./url.png">](https://www.codingame.com/ide/puzzle/logic-gates)
 - [MIME Type](./1-Easy/MIME%20Type/) [<img width="20" height="20" style="vertical-align: middle;" src="./url.png">](https://www.codingame.com/ide/puzzle/mime-type)
 - [Retro Typewriter Art](./1-Easy/Retro%20Typewriter%20Art/) [<img width="20" height="20" style="vertical-align: middle;" src="./url.png">](https://www.codingame.com/ide/puzzle/retro-typewriter-art)
+- [Temperatures](./1-Easy/Temperatures/) [<img width="20" height="20" style="vertical-align: middle;" src="./url.png">](https://www.codingame.com/ide/puzzle/temperatures)
 - [The Descent](./1-Easy/The%20Descent/) [<img width="20" height="20" style="vertical-align: middle;" src="./url.png">](https://www.codingame.com/ide/puzzle/the-descent)
 - [Unary](./1-Easy/Unary/) [<img width="20" height="20" style="vertical-align: middle;" src="./url.png">](https://www.codingame.com/ide/puzzle/unary)
 
