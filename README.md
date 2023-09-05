@@ -22,5 +22,6 @@ My [CodinGame Puzzle](https://www.codingame.com/training) solutions. [My profile
 
 ## Hard
 - [Super-Computer](./3-Hard/Super%20Computer/) [<img width="20" height="20" style="vertical-align: middle;" src="./url.png">](https://www.codingame.com/ide/puzzle/super-computer)
+- [Genome Sequencing](./3-Hard/Genome%20Sequencing/) [<img width="20" height="20" style="vertical-align: middle;" src="./url.png">](https://www.codingame.com/ide/puzzle/genome-sequencing)
 
 ## Very Hard
