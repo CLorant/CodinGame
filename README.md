@@ -12,6 +12,7 @@ My [CodinGame Puzzle](https://www.codingame.com/training) solutions. [My profile
 - [Onboarding](./1-Easy/Onboarding/) [<img width="20" height="20" style="vertical-align: middle;" src="./url.png">](https://www.codingame.com/ide/puzzle/onboarding)
 - [Power of Thor - Episode 1](./1-Easy/Power%20of%20Thor%20-%20Episode%201/) [<img width="20" height="20" style="vertical-align: middle;" src="./url.png">](https://www.codingame.com/ide/puzzle/power-of-thor-episode-1)
 - [Retro Typewriter Art](./1-Easy/Retro%20Typewriter%20Art/) [<img width="20" height="20" style="vertical-align: middle;" src="./url.png">](https://www.codingame.com/ide/puzzle/retro-typewriter-art)
+- [Rock Paper Scissors Lizard Spock](./1-Easy/Rock%20Paper%20Scissors%20Lizard%20Spock/) [<img width="20" height="20" style="vertical-align: middle;" src="./url.png">](https://www.codingame.com/ide/puzzle/rock-paper-scissors-lizard-spock)
 - [Temperatures](./1-Easy/Temperatures/) [<img width="20" height="20" style="vertical-align: middle;" src="./url.png">](https://www.codingame.com/ide/puzzle/temperatures)
 - [The Descent](./1-Easy/The%20Descent/) [<img width="20" height="20" style="vertical-align: middle;" src="./url.png">](https://www.codingame.com/ide/puzzle/the-descent)
 - [Unary](./1-Easy/Unary/) [<img width="20" height="20" style="vertical-align: middle;" src="./url.png">](https://www.codingame.com/ide/puzzle/unary)
