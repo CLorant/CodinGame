@@ -5,6 +5,7 @@ My [CodinGame Puzzle](https://www.codingame.com/training) solutions. [My profile
 ## Easy
 - [ASCII Art](./1-Easy/ASCII%20Art/) [![url](./url.png)](https://www.codingame.com/ide/puzzle/ascii-art)
 - [Defibrillators](./1-Easy/Defibrillators/) [![url](./url.png)](https://www.codingame.com/ide/puzzle/defibrillators)
+- [Euclid's Algorithm](./1-Easy/Euclid's%20Algorithm/) [![url](./url.png)](https://www.codingame.com/ide/puzzle/euclids-algorithm)
 - [Ghost Legs](./1-Easy/Ghost%20Legs/) [![url](./url.png)](https://www.codingame.com/ide/puzzle/ghost-legs)
 - [Horse-racing Duals](./1-Easy/Horse-racing%20Duals/) [![url](./url.png)](https://www.codingame.com/ide/puzzle/horse-racing-duals)
 - [Is that a possible word?](./1-Easy/Is%20that%20a%20possible%20word/) [![url](./url.png)](https://www.codingame.com/ide/puzzle/is-that-a-possible-word)
