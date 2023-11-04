@@ -21,6 +21,7 @@ My [CodinGame Puzzle](https://www.codingame.com/training) solutions. [My profile
 
 ## Medium
 - [Scrabble](./2-Medium/Scrabble/) [![url](./url.png)](https://www.codingame.com/ide/puzzle/scrabble)
+- [Stock Exchange Losses](./2-Medium/Stock%20Exchange%20Losses/) [![url](./url.png)](https://www.codingame.com/ide/puzzle/stock-exchange-losses)
 - [There is no Spoon - Episode 1](./2-Medium/There%20is%20no%20Spoon%20-%20Episode%201/) [![url](./url.png)](https://www.codingame.com/ide/puzzle/there-is-no-spoon-episode-1)
 
 ## Hard
