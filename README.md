@@ -2,6 +2,8 @@
 
 My [CodinGame Puzzle](https://www.codingame.com/training) solutions. [My profile](https://www.codingame.com/profile/297979d98289809c8b38c1b396903a6a4266815).
 
+Hit the ⭐ if I helped in any way.
+
 ## Easy
 - [ASCII Art](./1-Easy/ASCII%20Art/) [![url](./url.png)](https://www.codingame.com/ide/puzzle/ascii-art)
 - [Defibrillators](./1-Easy/Defibrillators/) [![url](./url.png)](https://www.codingame.com/ide/puzzle/defibrillators)
