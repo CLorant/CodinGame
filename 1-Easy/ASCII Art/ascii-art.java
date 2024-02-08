@@ -5,7 +5,7 @@ class AsciiArt {
     private int charWidth;
     private int charHeight;
     private String text;
-    private int[] letterStartingPositions ;
+    private int[] letterStartingPositions;
     private String art;
     private char[] alphabet;
 
