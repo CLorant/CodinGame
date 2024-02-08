@@ -1,47 +1,57 @@
-const formatLonLat = (input) => {
+// Replaces the comma with a decimal point and converts the string to a double
+function formatDouble(input) {
   return parseFloat(input.replace(',', '.'))
 }
 
-const formatDefibrillator = (line) => {
-  // the id, address and the phoneNumber fields are not needed to complete the task
-  // but are still stored due to being present in the input
-
+// Constructor like approach to create an object with properties
+function formatDefib(line) {
   const inputs = line.split(';');
 
-  // returns an object with corresponding properties
   return {
       id: inputs[0],
       name: inputs[1],
       address: inputs[2],
       phoneNumber: inputs[3],
-      lon: formatLonLat(inputs[4]),
-      lat: formatLonLat(inputs[5])
+      lon: formatDouble(inputs[4]),
+      lat: formatDouble(inputs[5])
   }
 }
 
-const calculateDistance = (userLon, userLat, lon, lat) => {
-  const x = (lon - userLon) * Math.cos((lat + userLat) / 2);
-  const y = lat - userLat;
-  return Math.sqrt(x ** 2 + y ** 2) * 6371;
+const EARTH_RADIUS = 6371; // Earth's radius in kilometers
+
+// Calculates the distance between the current location and the defibrillator
+function calculateDistance(currectLon, currentLat, lon, lat) {
+  const lonDifference = lon - currectLon;
+  const latAverage = (lat + currentLat) / 2;
+
+  const x = lonDifference * Math.cos(latAverage);
+  const y = lat - currentLat;
+
+  return Math.hypot(x, y) * EARTH_RADIUS;
 }
 
-const userLon = formatLonLat(readline());
-const userLat = formatLonLat(readline());
-const n = parseInt(readline());
+// Finds the closest defibrillator based on the current location
+function getClosestDefib(currectLon, currectLat, defibCount) {
+  let closestDefib = null;
+  let minDistance = Number.MAX_VALUE;
 
-let closestDef = null;
-let minDistance = Number.MAX_VALUE;
+  for (let i = 0; i < defibCount; i++) {
+      const currentDefib = formatDefib(readline());
+      const distance = calculateDistance(currectLon, currectLat, currentDefib.lon, currentDefib.lat);
 
-for (let i = 0; i < n; i++) {
-  let currentDef = formatDefibrillator(readline());
-  let distance = calculateDistance(userLon, userLat, currentDef.lon, currentDef.lat);
-
-  // minimum selection based on distance
-  if (distance < minDistance)
-  {
-      minDistance = distance;
-      closestDef = currentDef;
+      if (distance < minDistance) {
+          minDistance = distance;
+          closestDefib = currentDefib;
+      }
   }
+
+  return closestDefib;
 }
 
-console.log(closestDef.name);
+const currectLon = formatDouble(readline());
+const currentLat = formatDouble(readline());
+const defibCount = parseInt(readline());
+
+const closestDefib = getClosestDefib(currectLon, currentLat, defibCount);
+
+console.log(closestDefib.name);
