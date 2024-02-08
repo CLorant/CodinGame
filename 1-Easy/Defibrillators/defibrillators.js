@@ -20,8 +20,8 @@ function formatDefib(line) {
 const EARTH_RADIUS = 6371; // Earth's radius in kilometers
 
 // Calculates the distance between the current location and the defibrillator
-function calculateDistance(currectLon, currentLat, lon, lat) {
-  const lonDifference = lon - currectLon;
+function calculateDistance(currentLon, currentLat, lon, lat) {
+  const lonDifference = lon - currentLon;
   const latAverage = (lat + currentLat) / 2;
 
   const x = lonDifference * Math.cos(latAverage);
@@ -31,13 +31,13 @@ function calculateDistance(currectLon, currentLat, lon, lat) {
 }
 
 // Finds the closest defibrillator based on the current location
-function getClosestDefib(currectLon, currectLat, defibCount) {
+function getClosestDefib(currentLon, currentLat, defibCount) {
   let closestDefib = null;
   let minDistance = Number.MAX_VALUE;
 
   for (let i = 0; i < defibCount; i++) {
       const currentDefib = formatDefib(readline());
-      const distance = calculateDistance(currectLon, currectLat, currentDefib.lon, currentDefib.lat);
+      const distance = calculateDistance(currentLon, currentLat, currentDefib.lon, currentDefib.lat);
 
       if (distance < minDistance) {
           minDistance = distance;
@@ -48,10 +48,10 @@ function getClosestDefib(currectLon, currectLat, defibCount) {
   return closestDefib;
 }
 
-const currectLon = formatDouble(readline());
+const currentLon = formatDouble(readline());
 const currentLat = formatDouble(readline());
 const defibCount = parseInt(readline());
 
-const closestDefib = getClosestDefib(currectLon, currentLat, defibCount);
+const closestDefib = getClosestDefib(currentLon, currentLat, defibCount);
 
 console.log(closestDefib.name);

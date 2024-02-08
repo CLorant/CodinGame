@@ -19,13 +19,13 @@ class Defibrillator {
     }
 
     // Finds the closest defibrillator based on the current location
-    public static Defibrillator getClosestDefib(Scanner scanner, double currectLon, double currentLat, int defibCount) {
+    public static Defibrillator getClosestDefib(Scanner scanner, double currentLon, double currentLat, int defibCount) {
         Defibrillator closestDefib = null;
         double minDistance = Double.MAX_VALUE;
 
         for (int i = 0; i < defibCount; i++) {
             Defibrillator currentDefib = new Defibrillator(scanner.nextLine());
-            double distance = currentDefib.calculateDistance(currectLon, currentLat);
+            double distance = currentDefib.calculateDistance(currentLon, currentLat);
 
             if (distance < minDistance) {
                 minDistance = distance;
@@ -39,8 +39,8 @@ class Defibrillator {
     }
 
     // Calculates the distance between the current location and the defibrillator
-    private double calculateDistance(double currectLon, double currentLat) {
-        double lonDifference = lon - currectLon;
+    private double calculateDistance(double currentLon, double currentLat) {
+        double lonDifference = lon - currentLon;
         double latAverage = (lat + currentLat) / 2;
 
         double x = lonDifference * Math.cos(latAverage);
@@ -65,7 +65,7 @@ class Solution {
 
     public static void main(String args[]) {
         Scanner scanner = new Scanner(System.in);
-        double currectLon = Defibrillator.formatDouble(scanner.next());
+        double currentLon = Defibrillator.formatDouble(scanner.next());
         double currentLat = Defibrillator.formatDouble(scanner.next());
         int defibCount = scanner.nextInt();
 
@@ -73,7 +73,7 @@ class Solution {
             scanner.nextLine();
         }
 
-        Defibrillator closestDefib = Defibrillator.getClosestDefib(scanner, currectLon, currentLat, defibCount);
+        Defibrillator closestDefib = Defibrillator.getClosestDefib(scanner, currentLon, currentLat, defibCount);
         
         System.out.println(closestDefib.name);
         scanner.close();

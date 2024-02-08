@@ -15,13 +15,13 @@ class Defibrillator {
   }
 
   // Finds the closest defibrillator based on the current location
-  static getClosestDefib(currectLon: number, currectLat: number, defibCount: number): Defibrillator {
+  static getClosestDefib(currentLon: number, currentLat: number, defibCount: number): Defibrillator {
       let closestDefib: Defibrillator | null = null;
       let minDistance = Number.MAX_VALUE;
 
       for (let i = 0; i < defibCount; i++) {
           const currentDefib = new Defibrillator(readline());
-          const distance = currentDefib.calculateDistance(currectLon, currectLat);
+          const distance = currentDefib.calculateDistance(currentLon, currentLat);
 
           if (distance < minDistance) {
               minDistance = distance;
@@ -33,8 +33,8 @@ class Defibrillator {
   }
 
   // Calculates the distance between the current location and the defibrillator
-  private calculateDistance(currectLon: number, currentLat: number): number {
-      const lonDifference = this.lon - currectLon;
+  private calculateDistance(currentLon: number, currentLat: number): number {
+      const lonDifference = this.lon - currentLon;
       const latAverage = (this.lat + currentLat) / 2;
 
       const x = lonDifference * Math.cos(latAverage);
@@ -54,10 +54,10 @@ class Defibrillator {
   }
 }
 
-const currectLon = Defibrillator.formatDouble(readline());
+const currentLon = Defibrillator.formatDouble(readline());
 const currentLat = Defibrillator.formatDouble(readline());
 const defibCount = parseInt(readline());
 
-const closestDefib = Defibrillator.getClosestDefib(currectLon, currentLat, defibCount);
+const closestDefib = Defibrillator.getClosestDefib(currentLon, currentLat, defibCount);
 
 console.log(closestDefib.name);

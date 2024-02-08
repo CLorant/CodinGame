@@ -42,9 +42,9 @@ class Defibrillator
     }
 
     // Calculates the distance between the current location and the defibrillator
-    private double CalculateDistance(double currectLon, double currentLat)
+    private double CalculateDistance(double currentLon, double currentLat)
     {
-        double lonDifference = lon - currectLon;
+        double lonDifference = lon - currentLon;
         double latAverage = (lat + currentLat) / 2;
 
         double x = lonDifference * Math.Cos(latAverage);
@@ -71,11 +71,11 @@ class Solution
 {
     static void Main(string[] args)
     {
-        double currectLon = Defibrillator.FormatDouble(Console.ReadLine());
+        double currentLon = Defibrillator.FormatDouble(Console.ReadLine());
         double currentLat = Defibrillator.FormatDouble(Console.ReadLine());
         int defibCount = Convert.ToInt32(Console.ReadLine());
 
-        Defibrillator closestDefib = Defibrillator.GetClosestDefib(currectLon, currentLat, defibCount);
+        Defibrillator closestDefib = Defibrillator.GetClosestDefib(currentLon, currentLat, defibCount);
 
         Console.WriteLine(closestDefib.name);
     }
