@@ -1,36 +1,35 @@
 #include <stdio.h>
 
-int GCD(int a, int b);
+int getGCD(int firstNumber, int secondNumber);
 
 int main()
 {
-    int a;
-    int b;
-    scanf("%d %d", &a, &b);
+    int firstNumber;
+    int secondNumber;
+    scanf("%d %d", &firstNumber, &secondNumber);
 
-    int gcd = GCD(a, b);
-    printf("GCD(%d,%d)=%d\n", a, b, gcd);
+    int gcd = getGCD(firstNumber, secondNumber);
+    
+    printf("GCD(%d,%d)=%d\n", firstNumber, secondNumber, gcd);
 
     return 0;
 }
 
-int GCD(int a, int b) {
-    // calculates the GCD of 2 numbers using Euclid's algorithm
+// Recursively calculates the GCD of 2 numbers using Euclid's algorithm, printing each step to the console
+int getGCD(int firstNumber, int secondNumber)
+{
+    int divisor = firstNumber / secondNumber;
+    int remainder = firstNumber % secondNumber;
 
-    int divisor = a / b;
-    int remainder = a % b;
-
-    // steps
-    printf("%d=%d*%d+%d\n", a, b, divisor, remainder);
+    printf("%d=%d*%d+%d\n", firstNumber, secondNumber, divisor, remainder);
     
-    if (remainder == 0)
+    if (remainder != 0)
     {
-        return b;
+        firstNumber = secondNumber;
+        secondNumber = remainder;
+
+        return getGCD(firstNumber, secondNumber);
     }
-    else
-    {
-        a = b;
-        b = remainder;
-        return GCD(a, b);
-    }
+
+    return secondNumber;
 }

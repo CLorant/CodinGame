@@ -1,22 +1,23 @@
-function GCD(a, b) {
-    const divisor = Math.floor(a / b);
-    const remainder = a % b;
+// Recursively calculates the GCD of 2 numbers using Euclid's algorithm, printing each step to the console
+function getGCD(firstNumber, secondNumber) {
+    const divisor = Math.floor(firstNumber / secondNumber);
+    const remainder = firstNumber % secondNumber;
 
-    console.log(`${a}=${b}*${divisor}+${remainder}`);
+    console.log(`${firstNumber}=${secondNumber}*${divisor}+${remainder}`);
 
-    if (remainder == 0) {
-        return b;
+    if (remainder != 0) {
+        firstNumber = secondNumber;
+        secondNumber = remainder;
+
+        return getGCD(firstNumber, secondNumber);    
     }
-    else {
-        a = b;
-        b = remainder;
-        return GCD(a, b);
-    }
+
+    return secondNumber;
 }
 
 const inputs = readline().split(' ');
-const a = parseInt(inputs[0]);
-const b = parseInt(inputs[1]);
+const firstNumber = parseInt(inputs[0]);
+const secondNumber = parseInt(inputs[1]);
+const gcd = getGCD(firstNumber, secondNumber);
 
-const gcd = GCD(a, b);
-console.log(`GCD(${a},${b})=${gcd}`);
+console.log(`GCD(${firstNumber},${secondNumber})=${gcd}`);

@@ -5,32 +5,29 @@ class Solution
     static void Main(string[] args)
     {
         string[] inputs = Console.ReadLine().Split(' ');
-        int a = int.Parse(inputs[0]);
-        int b = int.Parse(inputs[1]);
-
-        int gcd = GCD(a, b);
-        Console.WriteLine($"GCD({a},{b})={gcd}");
+        int firstNumber = int.Parse(inputs[0]);
+        int secondNumber = int.Parse(inputs[1]);
+        int gcd = getGCD(firstNumber, secondNumber);
+        
+        Console.WriteLine($"GCD({firstNumber},{secondNumber})={gcd}");
     }
 
-    static int GCD(int a, int b)
+    // Calculates the GCD of 2 numbers using Euclid's algorithm, printing each step to the console
+    static int getGCD(int firstNumber, int secondNumber)
     {
-        // calculates the GCD of 2 numbers using Euclid's algorithm
+        int divisor = firstNumber / secondNumber;
+        int remainder = firstNumber % secondNumber;
 
-        int divisor = a / b;
-        int remainder = a % b;
+        Console.WriteLine($"{firstNumber}={secondNumber}*{divisor}+{remainder}");
 
-        // steps
-        Console.WriteLine($"{a}={b}*{divisor}+{remainder}");
-
-        if (remainder == 0)
+        if (remainder != 0)
         {
-            return b;
+            firstNumber = secondNumber;
+            secondNumber = remainder;
+
+            return getGCD(firstNumber, secondNumber);
         }
-        else
-        {
-            a = b;
-            b = remainder;
-            return GCD(a, b);
-        }
+        
+        return secondNumber;
     }
 }
