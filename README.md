@@ -2,6 +2,8 @@
 
 My [CodinGame Puzzle](https://www.codingame.com/training) solutions. [My profile](https://www.codingame.com/profile/297979d98289809c8b38c1b396903a6a4266815).
 
+My aim is to write clean, easy-to-understand code, prioritizing clarity over compactness or performance. I take those into account too, but those factors are not my priority. However, some of the C solutions involving string handling can be a little messy.
+
 Hit the ⭐ if I helped in any way.
 
 ## Easy
