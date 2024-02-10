@@ -1,17 +1,25 @@
-const N = parseInt(readline());
-const strengths = [];
-
-for (let i = 0; i < N; i++) {
-    strengths.push(parseInt(readline()));
+// Populates the horseStrengths array
+function fillHorseStrengths(horseStrengths, horseCount) {
+    for (let i = 0; i < horseCount; i++) {
+        horseStrengths.push(parseInt(readline()));
+    }
 }
 
-// sorts the array in ascending order
-strengths.sort((a, b) => a - b);
+// Iterates over the horseStrengths array, substracting the next element from the current one and returns the closest difference
+function getClosestDifference(horseStrengths, horseCount) {
+    let min = Number.MAX_VALUE;
 
-let minimum = Number.MAX_VALUE;
-for (let i = 0; i < N - 1; i++) {
-    // subtracts the value at the current index from the next index, assigns that value or not to minimum
-    minimum = Math.min(minimum, strengths[i + 1] - strengths[i]);
+    for (let i = 0; i < horseCount - 1; i++) {
+        min = Math.min(min, horseStrengths[i + 1] - horseStrengths[i]);
+    }
+
+    return min;
 }
 
-console.log(minimum);
+const horseCount = parseInt(readline());
+const horseStrengths = [];
+fillHorseStrengths(horseStrengths, horseCount);
+horseStrengths.sort((a, b) => a - b); // Sorts the horseStrengths array in ascending order
+
+const min = getClosestDifference(horseStrengths, horseCount);
+console.log(min);

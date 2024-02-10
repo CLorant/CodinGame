@@ -1,34 +1,59 @@
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
-// uses void parameters due to qsort's last parameter requiring it
-int comparer(const void *elem1, const void *elem2) {
-    // casts the pointers to void then to int
-    return *((int*)elem1) - *((int*)elem2);
-}
+void fillHorseStrengths(int *horseStrengths, int horseCount);
+int sortByAscending(const void *next, const void *current);
+int getClosestDifference(int *horseStrengths, int horseCount);
 
-int main() {
-    int N;
-    scanf("%d", &N);
-    int strength[N];
-
-    for (int i = 0; i < N; i++) {
-        int pi;
-        scanf("%d", &pi);
-        strength[i] = pi;
-    }
-
-    // sorts the array using quicksort in ascending order
-    qsort(strength, sizeof(strength) / sizeof(*strength), sizeof(*strength), comparer);
+int main()
+{
+    int horseCount;
+    scanf("%d", &horseCount);
+    int horseStrengths[horseCount];
+    fillHorseStrengths(horseStrengths, horseCount);
     
-    int minimum = __INT_MAX__;
-    for (int i = 0; i < N - 1; i++) {
-        int current = strength[i + 1] - strength[i];
-        if (current < minimum) {
-            minimum = current;
-        }
-    }
-    printf("%d", minimum);
+    // Sorts the horseStrengths array in ascending order
+    qsort(horseStrengths,
+        sizeof(horseStrengths) / sizeof(*horseStrengths),
+        sizeof(*horseStrengths),
+        sortByAscending
+    );
+    
+    int min = getClosestDifference(horseStrengths, horseCount);
+    printf("%d", min);
 
     return 0;
+}
+
+// Populates the horseStrengths array
+void fillHorseStrengths(int *horseStrengths, int horseCount)
+{
+    for (int i = 0; i < horseCount; i++)
+    {
+        scanf("%d", &horseStrengths[i]);
+    }
+}
+
+// Comparator function for ascending order sorting
+int sortByAscending(const void *x, const void *y)
+{
+    return *((int*)x) - *((int*)y);
+}
+
+// Iterates over the horseStrengths array, substracting the next element from the current one and returns the closest difference
+int getClosestDifference(int *horseStrengths, int horseCount)
+{
+    int min = __INT_MAX__;
+
+    for (int i = 0; i < horseCount - 1; i++)
+    {
+        int current = horseStrengths[i + 1] - horseStrengths[i];
+        
+        if (current < min)
+        {
+            min = current;
+        }
+    }
+
+    return min;
 }

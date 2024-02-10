@@ -4,23 +4,40 @@ class Solution
 {
     static void Main(string[] args)
     {
-        int N = int.Parse(Console.ReadLine());
-        int[] strengths = new int[N];
+        int horseCount = int.Parse(Console.ReadLine());
+        int[] horseStrengths = new int[horseCount];
+        FillHorseStrengths(ref horseStrengths, horseCount);
+        SortHorseStrengths(ref horseStrengths);
 
-        for (int i = 0; i < N; i++)
+        int min = GetClosestDifference(ref horseStrengths, horseCount);
+        Console.WriteLine(min);
+    }
+
+    // Populates the horseStrengths array, uses ref to avoid having to copy another array
+    static void FillHorseStrengths(ref int[] horseStrengths, int horseCount)
+    {
+        for (int i = 0; i < horseCount; i++)
         {
-            strengths[i] = int.Parse(Console.ReadLine());
+            horseStrengths[i] = int.Parse(Console.ReadLine());
+        }
+    }
+
+    // Sorts the horseStrengths array in ascending order
+    static void SortHorseStrengths(ref int[] horseStrengths)
+    {
+        Array.Sort(horseStrengths, (x, y) => x.CompareTo(y));
+    }
+
+    // Iterates over the horseStrengths array, substracting the next element from the current one and returns the closest difference
+    static int GetClosestDifference(ref int[] horseStrengths, int horseCount)
+    {
+        int min = int.MaxValue;
+
+        for (int i = 0; i < horseCount - 1; i++)
+        {
+            min = Math.Min(min, horseStrengths[i + 1] - horseStrengths[i]);
         }
 
-        // sorts the array in ascending order
-        Array.Sort(strengths, (x, y) => x.CompareTo(y));
-
-        int minimum = int.MaxValue;
-        for (int i = 0; i < N - 1; i++)
-        {
-            // subtracts the value at the current index from the next index, assigns that value or not to minimum
-            minimum = Math.Min(minimum, strengths[i + 1] - strengths[i]);
-        }
-        Console.WriteLine(minimum);
+        return min;
     }
 }
