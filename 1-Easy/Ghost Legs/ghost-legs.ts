@@ -1,30 +1,51 @@
-const H: number = parseInt(readline().split(" ")[1]); // width is not needed
+const REDIRECTION_SYMBOL = "--";
+const PATH_SYMBOL = "|";
+const PATH_SEPARATOR_SYMBOL = "  ";
 
-const tLabels: string[] = readline().split("  ");
+// Fills an array with 0 to length
+function createInitialPath(size: number): number[] {
+    return Array.from({ length: size }, (_, index) => index);
+}
 
-// fill up an array with 0 to the number of top labels, incrementing the value with each step
-const path: number[] = Array.from({ length: tLabels.length }, (_, index) => index);
+// Processes a path input, updating the path array if redirections are found
+function processPath(input: string, path: number[]): void {
+    const line = input.split(PATH_SYMBOL);
 
-for (let i = 1; i < H - 1; i++) {
-    const line: string[] = readline().split("|");
-
-    for (let j = 0; j < line.length; j++) {
-        if (line[j] == "--") {
-            for (let k = 0; k < path.length; k++) {
-                // redirect to right or left
-                if (path[k] == j - 1) {
-                    path[k]++;
-                }
-                else if (path[k] == j) {
-                    path[k]--;
-                }
-            }
+    for (let i = 0; i < line.length; i++) {
+        if (line[i] == REDIRECTION_SYMBOL) {
+            redirectPath(i, path);
         }
     }
 }
 
-const bLabels: string[] = readline().split("  ");
-
-for (let i = 0; i < tLabels.length; i++) {
-    console.log(tLabels[i] + bLabels[path[i]]);
+// Updates the path array based on the redirection index
+function redirectPath(redirectIndex: number, path: number[]): void {
+    for (let i = 0; i < path.length; i++) {
+        // redirect to left or right
+        if (path[i] == redirectIndex) {
+            path[i]--;
+        }
+        else if (path[i] == redirectIndex - 1) {
+            path[i]++;
+        }
+    }
 }
+
+// Prints the top labels in order, and the bottom label's elements by the order specified in the path array
+function printResult(topLabels: string[], bottomLabels: string[], path: number[]): void {
+    for (let i = 0; i < topLabels.length; i++) {
+        console.log(`${topLabels[i]}${bottomLabels[path[i]]}`);
+    }
+}
+
+const height = parseInt(readline().split(" ")[1]); // width is not needed
+const topLabels = readline().split(PATH_SEPARATOR_SYMBOL);
+const path = createInitialPath(topLabels.length);
+
+// Starts indexing from 1 to height - 1 to only read the paths
+for (let i = 1; i < height - 1; i++) {
+    processPath(readline(), path);
+}
+
+const bottomLabels = readline().split("  ");
+printResult(topLabels, bottomLabels, path);
