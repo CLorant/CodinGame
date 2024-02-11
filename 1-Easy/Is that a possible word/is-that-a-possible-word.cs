@@ -1,74 +1,122 @@
 using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 
 class Solution
 {
     static void Main(string[] args)
     {
-        List<char> possibleLetters = Console.ReadLine()
-                                            .Split(' ')
-                                            .Select(Convert.ToChar)
-                                            .ToList();
-        List<string> possibleStates = Console.ReadLine()
-                                            .Split(' ')
-                                            .ToList();
-        int numberOfTransitions = int.Parse(Console.ReadLine());
+       try
+        {
+            List<char> possibleLetters = ReadCharList();
+            List<string> possibleStates = ReadStringList();
+            ushort numberOfTransitions = ReadUShort();
+            Dictionary<string, Dictionary<char, string>> transitionMap =
+                InitializeTransitionMap(numberOfTransitions, possibleStates);
+
+            string startState = Console.ReadLine();
+            List<string> endStates = ReadStringList();
+            ushort numberOfWords = ReadUShort();
+
+            PrintResults(possibleLetters, transitionMap, endStates, startState, numberOfWords);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An error occurred: {ex.Message}");
+        }
+    }
+
+    static List<char> ReadCharList()
+    {
+        return Console.ReadLine()
+                      .Split(' ')
+                      .Select(Convert.ToChar)
+                      .ToList();
+    }
+
+    static List<string> ReadStringList()
+    {
+        return Console.ReadLine()
+                      .Split(' ')
+                      .ToList();
+    }
+
+    static ushort ReadUShort()
+    {
+        return Convert.ToUInt16(Console.ReadLine());
+    }
+
+    // Splits the line into first state, transition char and second state, checks if the states are valid, then returns them as a tuple
+    static (string, char, string) SplitTransition(List<string> possibleStates)
+    {
+        string[] transitions = Console.ReadLine().Split(' ');
+        string firstState = transitions[0];
+        char transitionChar = Convert.ToChar(transitions[1]);
+        string secondState = transitions[2];
+        
+        if (!possibleStates.Contains(firstState) || !possibleStates.Contains(secondState))
+        {
+            throw new ArgumentException($"Invalid state: {firstState} or {secondState}");
+        }
+
+        return (firstState, transitionChar, secondState);
+    }
+
+    // Initializes a transition map using the given number of transitions
+    static Dictionary<string, Dictionary<char, string>> InitializeTransitionMap(ushort numberOfTransitions, List<string> possibleStates)
+    {
         var transitionMap = new Dictionary<string, Dictionary<char, string>>();
 
-        for (int i = 0; i < numberOfTransitions; i++)
+        for (ushort i = 0; i < numberOfTransitions; i++)
         {
-            string[] t = Console.ReadLine().Split(' ');
-            string firstState = t[0];
-            char character = char.Parse(t[1]);
-            string secondState = t[2];
+            var (firstState, transitionCharacter, secondState) = SplitTransition(possibleStates);
             
-            // check if firstState exists in transitionMap
             if (!transitionMap.ContainsKey(firstState))
             {
                 transitionMap[firstState] = new Dictionary<char, string>();
             }
 
-            transitionMap[firstState][character] = secondState;
+            transitionMap[firstState][transitionCharacter] = secondState;
         }
 
-        string startState = Console.ReadLine();
-        List<string> endStates = new List<string>(Console.ReadLine().Split(' '));
+        return transitionMap;
+    }
 
-        string IsWordInLanguage(string word)
+    // Checks if a word is in the language defined by the transition map and end states
+    static bool IsWordInLanguage(string word, string startState, Dictionary<string, Dictionary<char, string>> transitionMap, List<string> endStates)
+    {
+        string currentState = startState;
+
+        foreach (char character in word)
         {
-            string currentState = startState;
-
-            foreach (char character in word)
+            if (!transitionMap.TryGetValue(currentState, out var stateTransitions) ||
+                !stateTransitions.ContainsKey(character))
             {
-                // check if it's isn't a possible state OR
-                // check if there isn't a valid transition for the current state and character
-                if (!possibleStates.Contains(currentState) || 
-                    !transitionMap.ContainsKey(currentState) || 
-                    !transitionMap[currentState].ContainsKey(character))
-                {
-                    // the return has to be "false" instead of False due to the task
-                    return "false";
-                }
-                currentState = transitionMap[currentState][character];
+                return false;
             }
-
-            // check if the current state is among the possible end states
-            // the return has to be "true" or "false" instead of True or False due to the task
-            return endStates.Contains(currentState) ? "true" : "false";
+            currentState = stateTransitions[character];
         }
 
-        bool IsPossibleWord(string word)
-        {
-            return word.All(c => possibleLetters.Contains(c));
-        }
+        return endStates.Contains(currentState);
+    }
 
-        int numberOfWords = int.Parse(Console.ReadLine());
+    // Checks if a word is composed of only possible letters
+    static bool IsPossibleWord(string word, List<char> possibleLetters)
+    {
+        return word.All(c => possibleLetters.Contains(c));
+    }
+
+    static void PrintResults(List<char> possibleLetters, Dictionary<string, Dictionary<char, string>> transitionMap, List<string> endStates, string startState, ushort numberOfWords)
+    {
         for (int i = 0; i < numberOfWords; i++)
         {
             string word = Console.ReadLine();
-            string result = IsPossibleWord(word) ? IsWordInLanguage(word) : "false";
-            Console.WriteLine(result);
+            bool result = IsPossibleWord(word, possibleLetters) &&
+                          IsWordInLanguage(word, startState, transitionMap, endStates);
+
+            // Neccessary due to C# booleans being "True" or "False"
+            // And the task expects the outputs "true" or "false"
+            Console.WriteLine(result.ToString().ToLower());
         }
     }
 }

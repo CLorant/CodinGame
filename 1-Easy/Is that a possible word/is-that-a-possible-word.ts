@@ -1,46 +1,70 @@
-const possibleLetters: Set<string> = new Set<string>(readline().split(" "));
-const possibleStates: Set<string> = new Set<string>(readline().split(" "));
-const numberOfTransitions: number = parseInt(readline());
-const transitionMap = new Map<string, Map<string, string>>();
-
-for (let i = 0; i < numberOfTransitions; i++) {
-    const t = readline().split(" ");
-    const firstState = t[0];
-    const character = t[1];
-    const secondState = t[2];
-
-    // check if firstState exists in transitionMap
-    transitionMap.set(firstState, (transitionMap.get(firstState) || new Map()).set(character, secondState));
+function createStringSet(line: string): Set<string> {
+    return new Set<string>(line.split(" "));
 }
 
-const startState: string = readline();
-const endStates: Set<string> = new Set<string>(readline().split(" "));
+// Create a transition map representing state transitions
+function createTransitionMap(numberOfTransitions: number): Map<string, Map<string, string>> {
+    const transitionMap = new Map<string, Map<string, string>>();
 
-function isWordInLanguage(word: string): boolean {
+    for (let i = 0; i < numberOfTransitions; i++) {
+        const transition = readline().split(" ");
+        const firstState = transition[0];
+        const character = transition[1];
+        const secondState = transition[2];
+        let stateMap: Map<string, string>;
+
+        // If the first state already exists in the transition map, retrieve its state map, 
+        // otherwise, create a new state map and add it to the transition map
+        if (transitionMap.has(firstState)) {
+            stateMap = transitionMap.get(firstState);
+        }
+        else {
+            stateMap = new Map<string, string>();
+            transitionMap.set(firstState, stateMap);
+        }
+
+        stateMap.set(character, secondState);
+    }
+
+    return transitionMap;
+}
+
+// Check if a given word is in the language represented by the finite automaton
+function isWordInLanguage(word: string, possibleStates: Set<string>, transitionMap: Map<string, Map<string, string>>): boolean {
     let currentState: string = startState;
 
     for (let i = 0; i < word.length; i++) {
-        // check if it's isn't a possible state OR
-        // check if there isn't a valid transition for the current state and character
-        if (!possibleStates.has(currentState) ||
-            !transitionMap.get(currentState)?.has(word[i])
-        ) {
+        const isPossibleState = possibleStates.has(currentState);
+        const isValidTransition = transitionMap.get(currentState)?.has(word[i]);
+
+        // If the current state is not among possible states or there's no valid transition for the current character, return false
+        if (!isPossibleState || !isValidTransition) {
             return false;
         }
+
         currentState = transitionMap.get(currentState)?.get(word[i]);
     }
 
-    // check if the current state is among the possible end states
+    // Check if the current state is among the possible end states
     return endStates.has(currentState);
 }
 
-function isPossibleWord(word: string): boolean {
+// Check if a given word consists entirely of possible letters
+function isPossibleWord(word: string, possibleLetters: Set<string>): boolean {
     return [...word].every(c => possibleLetters.has(c));
 }
 
+const possibleLetters = createStringSet(readline());
+const possibleStates = createStringSet(readline());
+const numberOfTransitions = parseInt(readline());
+const transitionMap = createTransitionMap(numberOfTransitions);
+const startState = readline();
+const endStates = createStringSet(readline());
 const numberOfWords = parseInt(readline());
+
 for (let i = 0; i < numberOfWords; i++) {
-    const word: string = readline();
-    const result: boolean = isPossibleWord(word) ? isWordInLanguage(word) : false;
+    const word = readline();
+    const result = isPossibleWord(word, possibleLetters) &&
+                   isWordInLanguage(word, possibleStates, transitionMap);
     console.log(result);
 }
