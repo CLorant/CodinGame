@@ -25,6 +25,7 @@ Hit the ⭐ if I helped in any way.
 - [Unary](./1-Easy/Unary/)                                                                  [![url](./url.svg)](https://www.codingame.com/ide/puzzle/unary)
 
 ## Medium
+- [Mayan Calculation](./2-Medium/Mayan%20Calculation/)                                      [![url](./url.svg)](https://www.codingame.com/ide/puzzle/mayan-calculation)
 - [Scrabble](./2-Medium/Scrabble/)                                                          [![url](./url.svg)](https://www.codingame.com/ide/puzzle/scrabble)
 - [Stock Exchange Losses](./2-Medium/Stock%20Exchange%20Losses/)                            [![url](./url.svg)](https://www.codingame.com/ide/puzzle/stock-exchange-losses)
 - [There is no Spoon - Episode 1](./2-Medium/There%20is%20no%20Spoon%20-%20Episode%201/)    [![url](./url.svg)](https://www.codingame.com/ide/puzzle/there-is-no-spoon-episode-1)
